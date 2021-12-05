@@ -65,19 +65,12 @@
     
     public class Match3_FallStart
     {
-        public int x;
-        public int y;
-
-        public int targetX;
-        public int targetY;
+        public Jewel jewel;
         
-        public static void Emmit(int x, int y, int targetX, int targetY)
+        public static void Emmit(Jewel jewel)
         {
             var action = new Match3_FallStart();
-            action.x = x;
-            action.y = y;
-            action.targetX = targetX;
-            action.targetY = targetY;
+            action.jewel = jewel;
             SmartPipe.EmmitAction(action);
         }
     }

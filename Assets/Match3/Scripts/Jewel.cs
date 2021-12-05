@@ -31,6 +31,7 @@ using UnityEngine;
         {
             SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnSelect);
             SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelect);
+            SmartPipe.RegisterListener<Match3_DestroyJewel>(this, OnDestroyJewel);
         }
 
         public void OnDestroy()
@@ -47,25 +48,13 @@ using UnityEngine;
             return isFalling;
         }
 
-        private void FallUpperJewel()
+        private void OnDestroyJewel(Match3_DestroyJewel obj)
         {
-            if (y > 0)
-            {
-                Match3_FallStart.Emmit(x, y-1, x, y);
-            }
-        }
-
-        /*private void OnDestroyJewel(Match3_DestroyJewel obj)
-        {
-            var j = obj.jewel;
-            
-            FallUpperJewel();   
-            
             if (obj.jewel == this)
             {
-            
+                Kill();
             }
-        }*/
+        }
 
         public void Update()
         {
@@ -95,6 +84,7 @@ using UnityEngine;
         {
             var targetPosition = Jewel.IndexToPosition(x, y - 5);
             transform.localPosition = targetPosition;
+            isFalling = true;
         }
         
         public void SetPosition(int x, int y, bool withAnimation = false)

@@ -22,12 +22,11 @@ public class Match3Field : IPipeListener
     {
         SmartPipe.RegisterListener<Match3_InitField>(this, OnInitField);
         SmartPipe.RegisterListener<Input_Click>(this, OnClick);
-        SmartPipe.RegisterListener<Match3_DestroyJewel>(this, OnJewelDestroy);
-        SmartPipe.RegisterListener<Match3_FallStart>(this, OnStartFall);
-        SmartPipe.RegisterListener<Match3_DestroyJewel>(this, OnDestroyJewel);
     }
     
-    private void FallUpperJewel(int x, int y)
+    
+    
+    /*private void FallUpperJewel(int x, int y)
     {
         if (y > 0)
         {
@@ -37,12 +36,13 @@ public class Match3Field : IPipeListener
         {
             GenerateNewJewelForColumn(x, y, true);
         }
-    }
+    }*/
 
-    private void GenerateNewJewelForColumn(int x, int y, bool withAnimation = false)
+    private void GenerateNewJewelForColumn(int x, int y, bool withAnimation)
     {
         if (_cells[x, y]._Jewel != null)
         {
+            Debug.LogError("Can't generate jewel for this cell");
             return;
         }
         
@@ -58,11 +58,11 @@ public class Match3Field : IPipeListener
         if (withAnimation)
         {
             j.MoveForFalling();
-            Match3_FallStart.Emmit(x, y, x, y);
         }
     }
 
-    private void OnDestroyJewel(Match3_DestroyJewel obj)
+
+    /*private void OnDestroyJewel(Match3_DestroyJewel obj)
     {
         var j = obj.jewel;
 
@@ -74,18 +74,20 @@ public class Match3Field : IPipeListener
         int x = j.x;
         int y = j.y;
         
-        FallUpperJewel(x, y);        
-        
         j.Kill();
-    }
+        
+        
+        
+        FallColumn(x);
+    }*/
 
-    private void OnStartFall(Match3_FallStart obj)
+    /*private void OnStartFall(Match3_FallStart obj)
     {
         /*if (_cells[obj.targetX, obj.targetY]._Jewel != null && !(obj.x != obj.targetX && obj.y != obj.x))
         {
             Debug.LogError("Trying to fall on other jewel place");
             return;
-        }*/
+        }* /
 
         var j = _cells[obj.x, obj.y]._Jewel;
 
@@ -106,10 +108,10 @@ public class Match3Field : IPipeListener
             _cells[obj.targetX, obj.targetY]._Jewel = j;
         }
         
-        FallUpperJewel(oldX, oldY);
-    }
+        FallColumn(oldY);
+    }*/
 
-    private void OnJewelDestroy(Match3_DestroyJewel obj)
+    /*private void OnJewelDestroy(Match3_DestroyJewel obj)
     {
         if (obj.jewel == _selected)
         {
@@ -125,7 +127,7 @@ public class Match3Field : IPipeListener
         int y = obj.jewel.GetY();
 
         _cells[x, y]._Jewel = null;
-    }
+    }*/
 
     private void OnClick(Input_Click click)
     {
@@ -145,18 +147,109 @@ public class Match3Field : IPipeListener
                 return;
             }
             
-            if (_selected != null)
-            {
-                Match3_UnSelectJewel.Emmit(_selected);                
-                _selected = null;
-            }
+            Unselect();
             
-            //_cells[position.x, position.y]._Jewel.Select();
             _selected = j;
+            Match3_SelectJewel.Emmit(_selected);
             
-            //Match3_SelectJewel.Emmit(_selected);
-            Match3_DestroyJewel.Emmit(_selected);
+            DestroyJewel(j);
         }
+    }
+
+    private void Unselect()
+    {
+        if (_selected)
+        {
+            _selected = null;
+            Match3_UnSelectJewel.Emmit(_selected);                
+        }
+    }
+
+    public void DestroyJewel(Jewel jewel)
+    {
+        if (jewel == _selected)
+        {
+            Unselect();
+        }
+
+        int x = jewel.x;
+        int y = jewel.y;
+        _cells[x, y]._Jewel = null;
+        
+        Match3_DestroyJewel.Emmit(jewel);
+
+        FallColumn(x);
+
+        GenerateJewelsForEmptyCells(x);
+    }
+
+    public void GenerateJewelsForEmptyCells(int x)
+    {
+        for (int y = height - 1; y >= 0; y--)
+        {
+            var j = _cells[x, y]._Jewel;
+
+            if (j == null)
+            {
+                GenerateNewJewelForColumn(x, y, true);
+            }
+
+        }
+    }
+
+    private int FindLowestEmptyCell(int x)
+    {
+        int lowest = -1;
+        
+        for (int y = height - 1; y >= 0; y--)
+        {
+            if (_cells[x, y]._Jewel == null)
+            {
+                return y;
+            }
+        }
+
+        return lowest;
+    }
+
+    private void ChangePosition(Jewel jewel, int x, int y)
+    {
+        if (_cells[x, y]._Jewel != null)
+        {
+            Debug.LogError("Can't change position on this cell");
+            return;
+        }
+
+        _cells[jewel.x, jewel.y]._Jewel = null;
+        _cells[x, y]._Jewel = jewel;
+        jewel.SetPosition(x, y, true);
+    }
+    
+    private void FallColumn(int x)
+    {
+        int lowest = FindLowestEmptyCell(x);
+
+        if (lowest == -1)
+        {
+            return;
+        }
+
+        for (int y = lowest - 1; y >= 0; y--)
+        {
+            var j = _cells[x, y]._Jewel;
+
+            if (j != null)
+            {
+               ChangePosition(j, x, lowest);
+               FallColumn(x);
+               return;
+            }
+        }
+    }
+
+    private void FallAtCell(int i, int i1)
+    {
+        
     }
 
     private void DestroyField()
@@ -182,7 +275,7 @@ public class Match3Field : IPipeListener
                 cell.x = i;
                 cell.y = j;
                 
-                GenerateNewJewelForColumn(i, j);
+                GenerateNewJewelForColumn(i, j, false);
             }
 
     }
