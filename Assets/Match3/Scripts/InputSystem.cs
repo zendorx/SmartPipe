@@ -7,7 +7,7 @@ namespace Match3.Scripts
     {
         public void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = Camera.main.nearClipPlane;

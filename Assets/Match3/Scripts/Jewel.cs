@@ -12,15 +12,116 @@ using UnityEngine;
 
         public const float spacing = 1.1f;
 
-        public void Start()
+        public int x;
+        public int y;
+
+        private bool isFalling = false;
+        
+        public int GetX()
+        {
+            return x;
+        }
+
+        public int GetY()
+        {
+            return y;
+        }
+
+        public void Construct()
         {
             SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnSelect);
             SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelect);
         }
 
-        public void SetPosition(int x, int y)
+        public void OnDestroy()
         {
-            transform.position = IndexToPosition(x, y);
+            SmartPipe.Unregister(this);
+        }
+
+        public void Start()
+        {
+        }
+
+        public bool IsFalling()
+        {
+            return isFalling;
+        }
+
+        private void FallUpperJewel()
+        {
+            if (y > 0)
+            {
+                Match3_FallStart.Emmit(x, y-1, x, y);
+            }
+        }
+
+        /*private void OnDestroyJewel(Match3_DestroyJewel obj)
+        {
+            var j = obj.jewel;
+            
+            FallUpperJewel();   
+            
+            if (obj.jewel == this)
+            {
+            
+            }
+        }*/
+
+        public void Update()
+        {
+            const float speed = 5.5f;
+            if (isFalling)
+            {
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - speed * Time.deltaTime);
+
+                var targetPosition = Jewel.IndexToPosition(x, y);
+
+                if (targetPosition.y > transform.localPosition.y)
+                {
+                    isFalling = false;
+                    UpdateName();
+                    transform.localPosition = targetPosition;
+                    Match3_FallEnd.Emmit(this);
+                }
+            }
+        }
+
+        public void Kill()
+        {
+            Destroy(gameObject);
+        }
+
+        public void MoveForFalling()
+        {
+            var targetPosition = Jewel.IndexToPosition(x, y - 5);
+            transform.localPosition = targetPosition;
+        }
+        
+        public void SetPosition(int x, int y, bool withAnimation = false)
+        {
+            this.x = x;
+            this.y = y;
+            
+            if (withAnimation)
+            {
+                isFalling = true;
+            }
+            else
+            {
+                transform.position = IndexToPosition(x, y);
+            }
+            
+            UpdateName();
+        }
+
+        private void UpdateName()
+        {
+            gameObject.name = $"{x}x{y}";
+
+            if (isFalling)
+            {
+                gameObject.name += " FALLING";
+            }
         }
 
         public void SetType(int type)

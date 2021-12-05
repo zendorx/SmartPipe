@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Match3.Scripts;
 using UnityEngine;
@@ -24,5 +25,10 @@ public class Match3Example : MonoBehaviour, IPipeListener
     {
         var obj = Instantiate(prefab, Vector3.zero, Quaternion.identity, root);
         jewel.jewel = obj;
+    }
+
+    public void Update()
+    {
+        SmartPipe.Update();
     }
 }

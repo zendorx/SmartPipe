@@ -50,16 +50,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Match3\Scripts\Match3Example.cs" />
-     <Compile Include="Assets\Scripts\SmartPipe\SmartPipe.cs" />
-     <Compile Include="Assets\Scripts\SmartPipe\PipeActions\ButtonClick1.cs" />
+     <Compile Include="Assets\Match3\Scripts\InputSystem.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\IPipeListener.cs" />
      <Compile Include="Assets\Match3\Scripts\Match3Field.cs" />
-     <Compile Include="Assets\Match3\Scripts\Match3Actions.cs" />
-     <Compile Include="Assets\Match3\Scripts\InputSystem.cs" />
+     <Compile Include="Assets\Match3\Scripts\Match3Example.cs" />
      <Compile Include="Assets\Match3\Scripts\Jewel.cs" />
+     <Compile Include="Assets\Scripts\SmartPipe\SmartPipe.cs" />
      <Compile Include="Assets\Match3\Scripts\InputSystemActions.cs" />
      <Compile Include="Assets\Match3\Scripts\UI\GameWindow.cs" />
+     <Compile Include="Assets\Match3\Scripts\Match3Actions.cs" />
+     <Compile Include="Assets\Scripts\SmartPipe\PipeActions\ButtonClick1.cs" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
@@ -334,8 +334,11 @@
  <Reference Include="UnityEditor">
  <HintPath>D:/Program Files/2020.1.16f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
- <Reference Include="nunit.framework">
- <HintPath>D:/Work/SmartPipe/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+ <Reference Include="DOTween">
+ <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
  <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
@@ -343,11 +346,8 @@
  <Reference Include="DOTween50">
  <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
- <Reference Include="DOTween43">
- <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>D:/Work/SmartPipe/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <Reference Include="nunit.framework">
+ <HintPath>D:/Work/SmartPipe/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/Program Files/2020.1.16f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

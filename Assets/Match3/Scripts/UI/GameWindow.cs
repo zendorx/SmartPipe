@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Pipes;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -45,9 +46,9 @@ namespace Match3.Scripts.UI
             Match3_UnSelectJewel.Emmit(null);
         }
 
-        public void RandomSelectClicked()
+        public void LagInput()
         {
-            
+            SmartPipe.actionsPerFrame = 1;
         }
     }
 }
