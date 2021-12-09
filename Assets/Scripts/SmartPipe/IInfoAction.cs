@@ -56,7 +56,8 @@ public abstract class IFactoryAction : IInfoAction
             Debug.LogError("Factory Action already completed");
             return;
         }
-        
+
+        _isResolved = true;
         SmartPipe2.Emmit(this as IInfoAction);
     }
 

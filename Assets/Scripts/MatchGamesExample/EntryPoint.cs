@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchGamesExample : MonoBehaviour, IWaiter
+public class EntryPoint : MonoBehaviour, IWaiter
 {
     List<IPipeListener> core = new List<IPipeListener>();
 
@@ -12,6 +12,8 @@ public class MatchGamesExample : MonoBehaviour, IWaiter
     
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        
         InitCore();
         LoadGame();
     }
@@ -19,6 +21,7 @@ public class MatchGamesExample : MonoBehaviour, IWaiter
     private void InitCore()
     {
         core.Add(new GameLoader());
+        core.Add(new GameSceneLoader());
     }
 
     private void LoadGame()
@@ -32,13 +35,14 @@ public class MatchGamesExample : MonoBehaviour, IWaiter
 
     public void Update()
     {
-        SmartPipe2.Update();
+        //SmartPipe2.Update();
     }
     
 
     private void StartGame()
     {
         Debug.Log("Starting Game");
+        GameSceneLoadAction.Process("MatchGamesExample");
     }
 
     public void OnAllActionsCompleted()

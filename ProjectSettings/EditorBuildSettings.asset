@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scripts/MatchGamesExample/Scene/MatchGamesLoader.unity
+    guid: 2a361e4a62e48874484e4487c4ce6c90
+  - enabled: 1
+    path: Assets/Scripts/MatchGamesExample/Scene/MatchGamesExample.unity
+    guid: 998a6c8469faead4095765bd9ec55f9f
   m_configObjects: {}

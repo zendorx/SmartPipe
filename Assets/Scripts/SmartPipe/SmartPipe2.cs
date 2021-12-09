@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SmartPipe;
 using UnityEngine;
 
 public class SmartPipe2
@@ -78,9 +79,9 @@ public class SmartPipe2
     {
         var type = factory.GetType();
         
-        if (_listenersProcessor.ContainsKey(type))
+        if (_listenersFactory.ContainsKey(type))
         {
-            var listener = _listenersProcessor[type];
+            var listener = _listenersFactory[type];
             listener.callback(factory);
         }
         else
@@ -123,6 +124,8 @@ public class SmartPipe2
 
     public static void Emmit(IProcessAction action)
     {
+        CheckInstance();
+        
         var queueData = new QueueData
         {
             process = action
@@ -133,6 +136,9 @@ public class SmartPipe2
     
     public static void Emmit(IFactoryAction action)
     {
+        CheckInstance();
+
+        
         var queueData = new QueueData
         {
             factory = action
@@ -143,6 +149,8 @@ public class SmartPipe2
     
     public static void Emmit(IInfoAction action)
     {
+        CheckInstance();
+
         var queueData = new QueueData
         {
             info = action
@@ -172,7 +180,7 @@ public class SmartPipe2
     }
     
     //emmit event for all
-    public static void RegisterListener<T>(IPipeListener listener, OnAction<T> callback) where T : class
+    public static void RegisterListener<T>(IPipeListener listener, OnAction<T> callback) where T : IInfoAction
     {
         var type = typeof(T);
         
@@ -194,7 +202,7 @@ public class SmartPipe2
     }
     
     //result command and emmit info
-    public static void RegisterListener_AsProccessor<T>(IPipeListener listener, OnAction<T> callback) where T : class
+    public static void RegisterListener_AsProccessor<T>(IPipeListener listener, OnAction<T> callback) where T : IProcessAction
     {
         var type = typeof(T);
         
@@ -215,7 +223,7 @@ public class SmartPipe2
     
     
     //Resolve command and return result
-    public static void RegisterListener_AsFactory<T>(IPipeListener listener, OnAction<T> callback) where T : class
+    public static void RegisterListener_AsFactory<T>(IPipeListener listener, OnAction<T> callback) where T : IFactoryAction
     {
         var type = typeof(T);
         
@@ -253,7 +261,7 @@ public class SmartPipe2
         var keysFactory = _listenersFactory.Keys.ToList();
         foreach (var key in keysFactory)
         {
-            if (_listenersProcessor[key].listener == listener)
+            if (_listenersFactory[key].listener == listener)
             {
                 _listenersProcessor.Remove(key);
             }
@@ -289,5 +297,13 @@ public class SmartPipe2
         }
         
         _waiters[waiter].Add(action);
+    }
+
+    private static void CheckInstance()
+    {
+        if (!SmartPipeMono.HasInstance())
+        {
+            Debug.LogError("Smart pipe has no MONO instance. Cannot update");
+        }
     }
 }
