@@ -50,15 +50,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Match3\Scripts\InputSystem.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\IPipeListener.cs" />
-     <Compile Include="Assets\Match3\Scripts\Match3Field.cs" />
-     <Compile Include="Assets\Match3\Scripts\Match3Example.cs" />
-     <Compile Include="Assets\Match3\Scripts\Jewel.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\OLD_SmartPipe.cs" />
-     <Compile Include="Assets\Match3\Scripts\InputSystemActions.cs" />
-     <Compile Include="Assets\Match3\Scripts\UI\GameWindow.cs" />
-     <Compile Include="Assets\Match3\Scripts\Match3Actions.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\PipeActions\ButtonClick1.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\IInfoAction.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\SmartPipe2.cs" />
@@ -66,7 +59,7 @@
      <Compile Include="Assets\Scripts\MatchGamesExample\Loading\GameLoader.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\Loading\LoadingActions.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\Loading\GameSceneLoader.cs" />
-     <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameSceneContext.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameEntryPoint.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameplayActions.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\Match3Factory.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\Match3Controller.cs" />
@@ -74,6 +67,7 @@
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\View\JewelView.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\Utils.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\SmartPipeMono.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameInputManager.cs" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />

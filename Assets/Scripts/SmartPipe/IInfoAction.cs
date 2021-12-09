@@ -2,8 +2,6 @@
 using System;
 using UnityEngine;
 
-
-
 public abstract class IInfoAction
 {
     public void Wait(IWaiter waiter)
@@ -30,7 +28,7 @@ public abstract class IProcessAction : IInfoAction
     {
         if (_isCompleted)
         {
-            Debug.LogError("Process Action already completed");
+            Debug.LogError("Process Action already completed: " + this);
             return;
         }
         

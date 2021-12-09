@@ -37,7 +37,7 @@ public class SmartPipe2
     }
 
     private static Dictionary<Type, List<InfoActionData> > _listenersInfo =new Dictionary<Type, List<InfoActionData>>();
-    private static Dictionary<Type, ProccessActionData > _listenersProcessor =new Dictionary<Type, ProccessActionData>();
+    private static Dictionary<Type, List<ProccessActionData> > _listenersProcessor =new Dictionary<Type, List<ProccessActionData> >();
     private static Dictionary<Type, FactoryActionData > _listenersFactory =new Dictionary<Type, FactoryActionData>();
     
     private static Dictionary<IWaiter, List<IInfoAction> > _waiters = new Dictionary<IWaiter, List<IInfoAction>>();
@@ -96,8 +96,19 @@ public class SmartPipe2
         
         if (_listenersProcessor.ContainsKey(type))
         {
-            var listener = _listenersProcessor[type];
-            listener.callback(process);
+            var list = _listenersProcessor[type];
+
+            if (list.Count == 0)
+            {
+                Debug.LogError("Pipe does not contain process listener for action:" + type);
+            }
+
+            var mList = list.ToList();
+            
+            foreach (var l in mList)
+            {
+                l.callback(process);    
+            }
         }
         else
         {
@@ -206,11 +217,12 @@ public class SmartPipe2
     {
         var type = typeof(T);
         
-        if (_listenersProcessor.ContainsKey(type))
+        if (!_listenersProcessor.ContainsKey(type))
         {
-            Debug.LogError($"Process listener ({listener})for action already registered: " + type);
-            return;
+            _listenersProcessor[type] = new List<ProccessActionData>();
         }
+
+        var list = _listenersProcessor[type];
         
         ProccessActionData data = new ProccessActionData
         {
@@ -218,7 +230,7 @@ public class SmartPipe2
         };
 
         data.callback = delegate(object o) { callback(o as T); };
-        _listenersProcessor[type] = data;
+        list.Add(data);
     }
     
     
@@ -249,14 +261,10 @@ public class SmartPipe2
             types.Value.RemoveAll(x => x.listener == listener);
         }
 
-        var keysProcessor = _listenersProcessor.Keys.ToList();
-        foreach (var key in keysProcessor)
+        foreach (var types in _listenersProcessor)
         {
-            if (_listenersProcessor[key].listener == listener)
-            {
-                _listenersProcessor.Remove(key);
-            }
-        } 
+            types.Value.RemoveAll(x => x.listener == listener);
+        }
         
         var keysFactory = _listenersFactory.Keys.ToList();
         foreach (var key in keysFactory)

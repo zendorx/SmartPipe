@@ -5,7 +5,7 @@ using MatchGamesExample.GamePlay;
 using MatchGamesExample.GamePlay.View;
 using UnityEngine;
 
-public class GameSceneContext : MonoBehaviour
+public class GameEntryPoint : MonoBehaviour, IPipeListener
 {
     List<IPipeListener> _listeners = new List<IPipeListener>();
     
@@ -15,13 +15,22 @@ public class GameSceneContext : MonoBehaviour
         
         Init();
         
-        FieldCreateAction.Process(6, 6, 4, 100500);
+        FieldCreateAction.Process(1, 6, 4, 100500);
     }
 
     private void Init()
     {
         _listeners.Add(new FieldController());
         _listeners.Add(new Match3Controller());
+        
+        
+        SmartPipe2.RegisterListener<FieldCreateAction>(this, OnFieldCreated);
+    }
+
+    private void OnFieldCreated(FieldCreateAction obj)
+    {
+        Debug.Log("Field created");
+        GameStartedAction.Emmit();
     }
 
     private void OnDestroy()
@@ -31,4 +40,6 @@ public class GameSceneContext : MonoBehaviour
             SmartPipe2.Unregister(l);
         }
     }
+    
+    
 }

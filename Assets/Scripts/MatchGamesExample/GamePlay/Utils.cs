@@ -1,5 +1,5 @@
-﻿using System.Numerics;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
+using UnityEngine;
 
 namespace MatchGamesExample.GamePlay
 {
@@ -14,7 +14,7 @@ namespace MatchGamesExample.GamePlay
 
         public static int2 PositionToIndex(Vector3 position)
         {
-            return new int2((int) (position.X + spacing/2 / spacing), (int) (- (position.Y - spacing/2) / spacing));
+            return new int2((int) (position.x + spacing/2 / spacing), (int) (- (position.y - spacing/2) / spacing));
         }
     }
 }
