@@ -2,12 +2,6 @@
 using MatchGamesExample.GamePlay.View;
 using Unity.Mathematics;
 
-public class GameplayActions
-{
-    
-}
-
-
 
 public class FieldCreateAction : IFactoryAction
 {
@@ -24,7 +18,7 @@ public class FieldCreateAction : IFactoryAction
         action.height = height;
         action.seed = seed;
         action.jewelTypeCount = jewelTypeCount;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -42,7 +36,7 @@ public class JewelCreateAction : IFactoryAction
         action.type = type;
         action.at = at;
         action.moveUpper = moveUpper;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -52,7 +46,7 @@ public class GameStartedAction : IInfoAction
     public static GameStartedAction Emmit()
     {
         var action = new GameStartedAction();
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -65,7 +59,7 @@ public class GameClickAction : IInfoAction
     {
         var action = new GameClickAction();
         action.position = position;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -78,7 +72,7 @@ public class JewelSelectAction : IProcessAction
     {
         var action = new JewelSelectAction();
         action.position = position;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -91,7 +85,7 @@ public class JewelDestroyAction : IProcessAction
     {
         var action = new JewelDestroyAction();
         action.position = position;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -106,7 +100,7 @@ public class JewelStartFallAction : IProcessAction
         var action = new JewelStartFallAction();
         action.from = from;
         action.to = to;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -119,7 +113,7 @@ public class JewelStartFallFromTopAction : IProcessAction
     {
         var action = new JewelStartFallFromTopAction();
         action.pos = pos;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }

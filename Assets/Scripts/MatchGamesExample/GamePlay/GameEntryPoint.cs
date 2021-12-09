@@ -24,7 +24,7 @@ public class GameEntryPoint : MonoBehaviour, IPipeListener
         _listeners.Add(new Match3Controller());
         
         
-        SmartPipe2.RegisterListener<FieldCreateAction>(this, OnFieldCreated);
+        SmartPipe.RegisterListener<FieldCreateAction>(this, OnFieldCreated);
     }
 
     private void OnFieldCreated(FieldCreateAction obj)
@@ -37,7 +37,7 @@ public class GameEntryPoint : MonoBehaviour, IPipeListener
     {
         foreach (var l in _listeners)
         {
-            SmartPipe2.Unregister(l);
+            SmartPipe.Unregister(l);
         }
     }
     

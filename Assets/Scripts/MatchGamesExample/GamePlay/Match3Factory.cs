@@ -12,7 +12,7 @@ namespace MatchGamesExample.GamePlay
         
         public void Awake()
         {
-            SmartPipe2.RegisterListener_AsFactory<JewelCreateAction>(this, CreateJewel);
+            SmartPipe.RegisterListener_AsFactory<JewelCreateAction>(this, CreateJewel);
         }
 
         private void CreateJewel(JewelCreateAction obj)

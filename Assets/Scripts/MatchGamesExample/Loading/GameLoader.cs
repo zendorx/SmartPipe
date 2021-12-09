@@ -8,7 +8,7 @@ public class GameLoader : IPipeListener
 {
     public GameLoader()
     {
-        SmartPipe2.RegisterListener_AsProccessor<GameLoadAsstsAction>(this, Load);
+        SmartPipe.RegisterListener_AsProccessor<GameLoadAsstsAction>(this, Load);
     }
 
     private void Load(GameLoadAsstsAction action)

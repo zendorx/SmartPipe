@@ -26,11 +26,11 @@ namespace MatchGamesExample.GamePlay.View
         
         public void Construct()
         {
-            SmartPipe2.RegisterListener<GameClickAction>(this, OnSomeJewelClick);
-            SmartPipe2.RegisterListener<JewelSelectAction>(this, OnSomeJewelSelected);
-            SmartPipe2.RegisterListener_AsProccessor<JewelDestroyAction>(this, OnSomeJewelDestroy);
-            SmartPipe2.RegisterListener_AsProccessor<JewelStartFallAction>(this, OnSomeJewelStartedFall);
-            SmartPipe2.RegisterListener_AsProccessor<JewelStartFallFromTopAction>(this, OnSomeJewelStartedFallFromTop);
+            SmartPipe.RegisterListener<GameClickAction>(this, OnSomeJewelClick);
+            SmartPipe.RegisterListener<JewelSelectAction>(this, OnSomeJewelSelected);
+            SmartPipe.RegisterListener_AsProccessor<JewelDestroyAction>(this, OnSomeJewelDestroy);
+            SmartPipe.RegisterListener_AsProccessor<JewelStartFallAction>(this, OnSomeJewelStartedFall);
+            SmartPipe.RegisterListener_AsProccessor<JewelStartFallFromTopAction>(this, OnSomeJewelStartedFallFromTop);
             index = TotalCount++;
             
             UpdateName();
@@ -63,7 +63,7 @@ namespace MatchGamesExample.GamePlay.View
         {
             if (position.Equals(obj.position))
             {
-                SmartPipe2.Unregister(this);
+                SmartPipe.Unregister(this);
                 obj.SetCompleted();
                 Destroy(gameObject);
                 return;

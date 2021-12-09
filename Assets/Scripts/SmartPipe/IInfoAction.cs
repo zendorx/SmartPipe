@@ -6,7 +6,7 @@ public abstract class IInfoAction
 {
     public void Wait(IWaiter waiter)
     {
-        SmartPipe2.AddWaiter(waiter, this);
+        SmartPipe.AddWaiter(waiter, this);
     }
 }
 
@@ -33,7 +33,7 @@ public abstract class IProcessAction : IInfoAction
         }
         
         _isCompleted = true;
-        SmartPipe2.Emmit(this as IInfoAction);
+        SmartPipe.Emmit(this as IInfoAction);
     }
     
 }
@@ -56,7 +56,7 @@ public abstract class IFactoryAction : IInfoAction
         }
 
         _isResolved = true;
-        SmartPipe2.Emmit(this as IInfoAction);
+        SmartPipe.Emmit(this as IInfoAction);
     }
 
 

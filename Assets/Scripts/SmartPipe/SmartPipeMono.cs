@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SmartPipe
-{
     public class SmartPipeMono : MonoBehaviour
     {
         private static SmartPipeMono instance;
@@ -21,7 +19,7 @@ namespace SmartPipe
 
         private void Update()
         {
-            SmartPipe2.Update();
+            SmartPipe.Update();
         }
 
         public static bool HasInstance()
@@ -29,4 +27,3 @@ namespace SmartPipe
             return instance != null;
         }
     }
-}

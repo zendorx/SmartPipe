@@ -6,7 +6,7 @@
     {
         var action = new GameLoadAsstsAction();
         action.url = url;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }
@@ -21,7 +21,7 @@ public class GameSceneLoadAction : IProcessAction
     {
         var action = new GameSceneLoadAction();
         action.sceneName = sceneName;
-        SmartPipe2.Emmit(action);
+        SmartPipe.Emmit(action);
         return action;
     }
 }

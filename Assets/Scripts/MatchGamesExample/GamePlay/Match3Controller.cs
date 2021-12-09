@@ -30,9 +30,9 @@ namespace MatchGamesExample.GamePlay
         
         public Match3Controller()
         {
-            SmartPipe2.RegisterListener_AsProccessor<JewelSelectAction>(this, OnJewelSelected);
-            SmartPipe2.RegisterListener<FieldCreateAction>(this, OnFieldCreated);
-            SmartPipe2.RegisterListener<JewelDestroyAction>(this, OnJewelDestroyed);
+            SmartPipe.RegisterListener_AsProccessor<JewelSelectAction>(this, OnJewelSelected);
+            SmartPipe.RegisterListener<FieldCreateAction>(this, OnFieldCreated);
+            SmartPipe.RegisterListener<JewelDestroyAction>(this, OnJewelDestroyed);
         }
 
         private void OnJewelDestroyed(JewelDestroyAction obj)

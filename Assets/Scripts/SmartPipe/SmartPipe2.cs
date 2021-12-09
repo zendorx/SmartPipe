@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SmartPipe;
 using UnityEngine;
 
-public class SmartPipe2
+public class SmartPipe
 {
     public delegate void OnAction<in T>(T obj);
 

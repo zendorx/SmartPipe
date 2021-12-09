@@ -51,8 +51,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SmartPipe\IPipeListener.cs" />
-     <Compile Include="Assets\Scripts\SmartPipe\OLD_SmartPipe.cs" />
-     <Compile Include="Assets\Scripts\SmartPipe\PipeActions\ButtonClick1.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\IInfoAction.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\SmartPipe2.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\EntryPoint.cs" />
@@ -60,7 +58,7 @@
      <Compile Include="Assets\Scripts\MatchGamesExample\Loading\LoadingActions.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\Loading\GameSceneLoader.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameEntryPoint.cs" />
-     <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GameplayActions.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\GamePlayActions.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\Match3Factory.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\Match3Controller.cs" />
      <Compile Include="Assets\Scripts\MatchGamesExample\GamePlay\FieldController.cs" />

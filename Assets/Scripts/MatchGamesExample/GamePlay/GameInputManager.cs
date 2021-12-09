@@ -10,7 +10,7 @@ namespace MatchGamesExample.GamePlay
         
         public void Awake()
         {
-            SmartPipe2.RegisterListener<GameStartedAction>(this, OnGameStarted);    
+            SmartPipe.RegisterListener<GameStartedAction>(this, OnGameStarted);    
         }
 
         private void OnGameStarted(GameStartedAction obj)

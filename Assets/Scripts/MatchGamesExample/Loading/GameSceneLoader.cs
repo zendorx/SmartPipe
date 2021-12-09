@@ -5,7 +5,7 @@ public class GameSceneLoader : IPipeListener
 {
     public GameSceneLoader()
     {
-        SmartPipe2.RegisterListener_AsProccessor<GameSceneLoadAction>(this, LoadScene);
+        SmartPipe.RegisterListener_AsProccessor<GameSceneLoadAction>(this, LoadScene);
     }
 
     private void LoadScene(GameSceneLoadAction obj)

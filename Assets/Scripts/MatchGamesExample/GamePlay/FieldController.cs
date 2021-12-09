@@ -18,9 +18,9 @@ namespace MatchGamesExample.GamePlay
         
         public FieldController()
         {
-            SmartPipe2.RegisterListener_AsFactory<FieldCreateAction>(this, CreateField);
-            SmartPipe2.RegisterListener<JewelCreateAction>(this, OnJewelCreated);
-            SmartPipe2.RegisterListener<JewelDestroyAction>(this, OnJewelDestroyed);
+            SmartPipe.RegisterListener_AsFactory<FieldCreateAction>(this, CreateField);
+            SmartPipe.RegisterListener<JewelCreateAction>(this, OnJewelCreated);
+            SmartPipe.RegisterListener<JewelDestroyAction>(this, OnJewelDestroyed);
             //SmartPipe2.RegisterListener<JewelStartFallAction>(this, OnJewelStartFall);
         }
 
