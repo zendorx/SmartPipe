@@ -2,11 +2,20 @@
 using System;
 using UnityEngine;
 
+
+
 public abstract class IInfoAction
 {
-    
+    public void Wait(IWaiter waiter)
+    {
+        SmartPipe2.AddWaiter(waiter, this);
+    }
 }
-    
+
+public interface IWaiter
+{
+    void OnAllActionsCompleted();
+}
 
 public abstract class IProcessAction : IInfoAction
 {

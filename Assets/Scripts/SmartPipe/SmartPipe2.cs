@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SmartPipe2
@@ -33,14 +34,17 @@ public class SmartPipe2
         public IInfoAction info;
         public IProcessAction process;
     }
-    
+
     private static Dictionary<Type, List<InfoActionData> > _listenersInfo =new Dictionary<Type, List<InfoActionData>>();
     private static Dictionary<Type, ProccessActionData > _listenersProcessor =new Dictionary<Type, ProccessActionData>();
     private static Dictionary<Type, FactoryActionData > _listenersFactory =new Dictionary<Type, FactoryActionData>();
     
+    private static Dictionary<IWaiter, List<IInfoAction> > _waiters = new Dictionary<IWaiter, List<IInfoAction>>();
+    
     private static Queue<QueueData> _actionQueue = new Queue<QueueData>();
 
     public static int actionsPerFrame = 1;
+    
     
     public static void Update()
     {
@@ -113,6 +117,8 @@ public class SmartPipe2
                 l.callback(info);
             }
         }
+        
+        CheckWaiters(info);
     }
 
     public static void Emmit(IProcessAction action)
@@ -235,7 +241,7 @@ public class SmartPipe2
             types.Value.RemoveAll(x => x.listener == listener);
         }
 
-        var keysProcessor = _listenersProcessor.Keys;
+        var keysProcessor = _listenersProcessor.Keys.ToList();
         foreach (var key in keysProcessor)
         {
             if (_listenersProcessor[key].listener == listener)
@@ -244,7 +250,7 @@ public class SmartPipe2
             }
         } 
         
-        var keysFactory = _listenersFactory.Keys;
+        var keysFactory = _listenersFactory.Keys.ToList();
         foreach (var key in keysFactory)
         {
             if (_listenersProcessor[key].listener == listener)
@@ -253,6 +259,35 @@ public class SmartPipe2
             }
         } 
     }
-    
-    
+
+    private static void CheckWaiters(IInfoAction action)
+    {
+        var keys = _waiters.Keys.ToList();
+        
+        foreach (var key in keys)
+        {
+            var value = _waiters[key];
+            
+            if (value.Contains(action))
+            {
+                value.Remove(action);
+
+                if (value.Count == 0)
+                {
+                    key.OnAllActionsCompleted();
+                    _waiters.Remove(key);
+                }
+            }
+        }
+    }
+
+    public static void AddWaiter(IWaiter waiter, IInfoAction action)
+    {
+        if (!_waiters.ContainsKey(waiter))
+        {
+            _waiters[waiter] = new List<IInfoAction>();
+        }
+        
+        _waiters[waiter].Add(action);
+    }
 }

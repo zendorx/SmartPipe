@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchGamesExample : MonoBehaviour
+public class MatchGamesExample : MonoBehaviour, IWaiter
 {
     List<IPipeListener> core = new List<IPipeListener>();
 
@@ -23,18 +23,26 @@ public class MatchGamesExample : MonoBehaviour
 
     private void LoadGame()
     {
-        GameLoadAsstsAction.Process(assetBundle1);
-        GameLoadAsstsAction.Process(assetBundle2);
-        GameLoadAsstsAction.Process(assetBundle3);
+        Debug.Log("Loading game..");
+        
+        GameLoadAsstsAction.Process(assetBundle1).Wait(this);
+        GameLoadAsstsAction.Process(assetBundle2).Wait(this);
+        GameLoadAsstsAction.Process(assetBundle3).Wait(this);
     }
 
     public void Update()
     {
         SmartPipe2.Update();
     }
+    
 
     private void StartGame()
     {
-        
+        Debug.Log("Starting Game");
+    }
+
+    public void OnAllActionsCompleted()
+    {
+        StartGame();
     }
 }
