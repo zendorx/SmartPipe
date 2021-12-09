@@ -18,9 +18,9 @@ namespace Match3.Scripts.UI
         
         public void Start()
         {
-            SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnJewelSelected);
-            SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelectJewel);
-            SmartPipe.RegisterListener<Match3_InitField>(this, OnInitField);
+            OLD_SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnJewelSelected);
+            OLD_SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelectJewel);
+            OLD_SmartPipe.RegisterListener<Match3_InitField>(this, OnInitField);
         }
 
         private void OnInitField(Match3_InitField obj)
@@ -48,7 +48,7 @@ namespace Match3.Scripts.UI
 
         public void LagInput()
         {
-            SmartPipe.actionsPerFrame = 1;
+            OLD_SmartPipe.actionsPerFrame = 1;
         }
     }
 }

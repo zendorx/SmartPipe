@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = System.Object;
 
-public class SmartPipe
+public class OLD_SmartPipe
 {
     struct ActionData
     {
@@ -27,7 +27,8 @@ public class SmartPipe
     
     private static Dictionary<Type, List<ActionListenerData> > _listeners =new Dictionary<Type, List<ActionListenerData>>();
     
-    private static SmartPipe _instance = null;
+    private static OLD_SmartPipe _instance = null;
+    
     
     public static void RegisterListener<T>(IPipeListener listener, OnAction<T> callback) where T : class
     {

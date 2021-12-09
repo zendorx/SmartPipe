@@ -14,7 +14,7 @@ public class Match3Example : MonoBehaviour, IPipeListener
     
     void Start()
     {
-        SmartPipe.RegisterListener<Match3_CreateJewel>(this, OnNeedJewel);
+        OLD_SmartPipe.RegisterListener<Match3_CreateJewel>(this, OnNeedJewel);
         
         field = new Match3Field();
         
@@ -29,6 +29,6 @@ public class Match3Example : MonoBehaviour, IPipeListener
 
     public void Update()
     {
-        SmartPipe.Update();
+        OLD_SmartPipe.Update();
     }
 }

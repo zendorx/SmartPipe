@@ -10,7 +10,7 @@ namespace Match3.Scripts
         {
             var action = new Input_Click();
             action.point = point;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
 }

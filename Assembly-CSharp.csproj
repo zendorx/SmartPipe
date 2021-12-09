@@ -55,11 +55,16 @@
      <Compile Include="Assets\Match3\Scripts\Match3Field.cs" />
      <Compile Include="Assets\Match3\Scripts\Match3Example.cs" />
      <Compile Include="Assets\Match3\Scripts\Jewel.cs" />
-     <Compile Include="Assets\Scripts\SmartPipe\SmartPipe.cs" />
+     <Compile Include="Assets\Scripts\SmartPipe\OLD_SmartPipe.cs" />
      <Compile Include="Assets\Match3\Scripts\InputSystemActions.cs" />
      <Compile Include="Assets\Match3\Scripts\UI\GameWindow.cs" />
      <Compile Include="Assets\Match3\Scripts\Match3Actions.cs" />
      <Compile Include="Assets\Scripts\SmartPipe\PipeActions\ButtonClick1.cs" />
+     <Compile Include="Assets\Scripts\SmartPipe\IInfoAction.cs" />
+     <Compile Include="Assets\Scripts\SmartPipe\SmartPipe2.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\MatchGamesExample.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\GameLoader.cs" />
+     <Compile Include="Assets\Scripts\MatchGamesExample\Actions\CoreActions.cs" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />

@@ -20,8 +20,8 @@ public class Match3Field : IPipeListener
     
     public Match3Field()
     {
-        SmartPipe.RegisterListener<Match3_InitField>(this, OnInitField);
-        SmartPipe.RegisterListener<Input_Click>(this, OnClick);
+        OLD_SmartPipe.RegisterListener<Match3_InitField>(this, OnInitField);
+        OLD_SmartPipe.RegisterListener<Input_Click>(this, OnClick);
     }
     
     
@@ -46,7 +46,7 @@ public class Match3Field : IPipeListener
             return;
         }
         
-        var result = SmartPipe.EmmitActionWithResult<Match3_CreateJewel>(new Match3_CreateJewel());
+        var result = OLD_SmartPipe.EmmitActionWithResult<Match3_CreateJewel>(new Match3_CreateJewel());
         
         var j = result.jewel;
         j.Construct();

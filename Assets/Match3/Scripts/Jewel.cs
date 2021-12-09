@@ -29,14 +29,14 @@ using UnityEngine;
 
         public void Construct()
         {
-            SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnSelect);
-            SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelect);
-            SmartPipe.RegisterListener<Match3_DestroyJewel>(this, OnDestroyJewel);
+            OLD_SmartPipe.RegisterListener<Match3_SelectJewel>(this, OnSelect);
+            OLD_SmartPipe.RegisterListener<Match3_UnSelectJewel>(this, OnUnSelect);
+            OLD_SmartPipe.RegisterListener<Match3_DestroyJewel>(this, OnDestroyJewel);
         }
 
         public void OnDestroy()
         {
-            SmartPipe.Unregister(this);
+            OLD_SmartPipe.Unregister(this);
         }
 
         public void Start()

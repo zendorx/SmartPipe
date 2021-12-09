@@ -10,7 +10,7 @@
             var action = new Match3_InitField();
             action.x = x;
             action.y = y;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
 
@@ -22,7 +22,7 @@
         {
             var action = new Match3_CreateJewel();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
 
@@ -34,7 +34,7 @@
         {
             var action = new Match3_SelectJewel();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
         
     }
@@ -47,7 +47,7 @@
         {
             var action = new Match3_UnSelectJewel();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
     
@@ -59,7 +59,7 @@
         {
             var action = new Match3_DestroyJewel();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
     
@@ -71,7 +71,7 @@
         {
             var action = new Match3_FallStart();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
     
@@ -83,7 +83,7 @@
         {
             var action = new Match3_FallEnd();
             action.jewel = jewel;
-            SmartPipe.EmmitAction(action);
+            OLD_SmartPipe.EmmitAction(action);
         }
     }
 }

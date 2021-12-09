@@ -7,6 +7,6 @@ public class ButtonClick1
     {
         var action = new ButtonClick1();
         action.Id = id;
-        SmartPipe.EmmitAction(action);
+        OLD_SmartPipe.EmmitAction(action);
     }
 }
